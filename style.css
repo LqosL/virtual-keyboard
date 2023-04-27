@@ -1,0 +1,73 @@
+.body{
+    background: #E8CBC0;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #636FA4, #E8CBC0);  /* Chrome 10-25, Safari 5.1-6 */
+    background:  url("assets/stars.png"), linear-gradient(to right, #636FA4, #E8CBC0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-blend-mode: soft-light;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.title{
+    text-align: center;
+    font-size: 4em;
+    font-family: monospace;
+    color: rgba(255, 220, 140, 0.84);
+    -webkit-text-stroke-width: thin;
+    -webkit-text-stroke-color: darkorchid;
+}
+.textarea{
+    width: 800px;
+    height: 12em;
+    background-color: lavender;
+    border-radius: 40px;
+    border: 4px double rgba(255, 220, 140, 0.84);
+    margin: auto;
+    background-image: url("assets/sailor_moon.png");
+    background-position: right;
+    background-repeat: no-repeat;
+    background-origin: border-box;
+    background-size: contain;
+    background-blend-mode: overlay;
+    margin-bottom: 50px;
+    padding: 10px;
+}
+.keyboard-wrapper{
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+.keyboard-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.key{
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url("assets/heart.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: relative;
+    user-select: none;
+    cursor: pointer;
+}
+.key:active{
+    background-image: none;
+}
+.twinkle{
+    transition-duration: 0.3s;
+    transform: scale(0);
+    position: absolute;
+    left: -500px;
+    top: -500px;
+    user-select: none;
+}
+.twinkle.dotwinkle{
+    transition-duration: 0.3s;
+    transform: scale(0.3);
+}
