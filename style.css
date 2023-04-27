@@ -9,14 +9,14 @@
 }
 .title{
     text-align: center;
-    font-size: 4em;
-    font-family: monospace;
+    font-size: 2em;
+    font-family: 'Press Start 2P', cursive;
     color: rgba(255, 220, 140, 0.84);
     -webkit-text-stroke-width: thin;
     -webkit-text-stroke-color: darkorchid;
 }
 .textarea{
-    width: 800px;
+    width: 1000px;
     height: 12em;
     background-color: lavender;
     border-radius: 40px;
@@ -32,7 +32,7 @@
     padding: 10px;
 }
 .keyboard-wrapper{
-    width: 800px;
+    width: 1000px;
     display: flex;
     flex-direction: column;
     align-self: center;
@@ -43,8 +43,8 @@
     justify-content: space-between;
 }
 .key{
-    height: 50px;
-    width: 50px;
+    height: 60px;
+    width: 60px;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -55,19 +55,59 @@
     position: relative;
     user-select: none;
     cursor: pointer;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8em;
+    color: blueviolet;
+
 }
 .key:active{
     background-image: none;
 }
+
 .twinkle{
-    transition-duration: 0.3s;
+    transition-duration: 0s;
     transform: scale(0);
     position: absolute;
     left: -500px;
     top: -500px;
     user-select: none;
+    z-index: 2;
 }
-.twinkle.dotwinkle{
-    transition-duration: 0.3s;
+.dotwinkle{
     transform: scale(0.3);
+    transition: 0.2s ease-in-out;
+    user-select: none;
 }
+.footer{
+    text-align: center;
+    font-size: 1em;
+    font-family: 'Press Start 2P', cursive;
+    color: rgba(255, 220, 140, 0.84);
+}
+
+#key-Enter{
+    width: 80px;
+    background-image: url("assets/enter.png");
+}
+#key-Space{
+    width: 480px;
+    background-image: url("assets/space.png");
+    background-size: cover;
+    color: transparent;
+    background-position: center;
+}
+
+#key-Shift{
+    width: 130px;
+    background-image: url("assets/shift.png");
+    background-size: cover;
+}
+#key-Ctrl,
+#key-Win,
+#key-Del,
+#key-Alt,
+#key-Tab{
+    background-image: url("assets/specialbuttons.png");
+    background-size: cover;
+}
+
