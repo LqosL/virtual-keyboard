@@ -6,7 +6,7 @@ const ruKeys = [['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=
   ['Ctrl', 'Win', 'Alt', 'Space', 'Alt', 'Left', 'Down', 'Right', 'Ctrl']];
 
 const ruKeysShift = [['`', '!', '"', '№', ';', '%', ':', '?', '*', '(', ')', '_', '+', 'Backspace'], ['Tab', 'Й', 'Ц', 'У', 'К', 'Е', 'Н', 'Г', 'Ш', 'Щ', 'З', 'Х', 'Ъ', '\\', 'Del'],
-  ['CapsLock', 'Ф', 'Ы', 'В', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Ж', 'Э', 'Enter'], ['Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', 'Up', 'Shift'],
+  ['CapsLock', 'Ф', 'Ы', 'В', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Ж', 'Э', 'Enter'], ['Shift', 'Я', 'Ч', 'С', 'М', 'И', 'Т', 'Ь', 'Б', 'Ю', ',', 'Up', 'Shift'],
   ['Ctrl', 'Win', 'Alt', 'Space', 'Alt', 'Left', 'Down', 'Right', 'Ctrl']];
 
 const enKeys = [['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace'], ['Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'Del'],
@@ -41,8 +41,8 @@ function createTextArea() {
 function createButton(role) {
   const button = document.createElement('div');
   button.classList.add('key');
-  button.id = `key-${role}`;
-  button.innerHTML = `<span>${role}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false">`;
+  button.classList.add(`key-${role}`);
+  button.innerHTML = `<span>${role}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false" ondragdrop="return false" ondragstart="return false">`;
   return button;
 }
 
@@ -96,15 +96,15 @@ function createKeyboard(lang, shift) {
 }
 
 function keyDown(key, input = '', modifyer = null) {
-  for (const decoration of key.getElementsByClassName('twinkle')) {
+  Array.from(key.getElementsByClassName('twinkle')).forEach((decoration) => {
     decoration.classList.add('dotwinkle');
-  }
+  });
 }
 
 function keyUp(key, modifyer = null) {
-  for (const decoration of key.getElementsByClassName('twinkle')) {
+  Array.from(key.getElementsByClassName('twinkle')).forEach((decoration) => {
     decoration.classList.remove('dotwinkle');
-  }
+  });
 }
 
 window.addEventListener('load', () => {
@@ -113,7 +113,7 @@ window.addEventListener('load', () => {
   createKeyboard(lang, shift);
   createFooter();
 
-  for (let elementKey of document.getElementsByClassName('key')) {
+  Array.from(document.getElementsByClassName('key')).forEach((elementKey) => {
     elementKey.addEventListener('mousedown', () => {
       keyDown(elementKey);
     });
@@ -122,5 +122,5 @@ window.addEventListener('load', () => {
     };
     elementKey.addEventListener('mouseup', mouseUpListener)
     elementKey.addEventListener('mouseleave', mouseUpListener)
-  }
+  });
 });
