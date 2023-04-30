@@ -114,28 +114,29 @@ function createKeyboard(lang, shiftMode) {
 function updateKeyboard(lang, shiftMode) {
   let i = 0;
   Array.from(document.getElementsByClassName('key')).forEach((keyelement) => {
+    const keyElement = keyelement;
     if (capsMode === true) {
       if (lang === 'ru') {
         if (shiftMode === false) {
           const keyboardset = ruKeys.flat();
-          keyelement.innerHTML = `<span>${keyboardset[i].toUpperCase()}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false" ondragdrop="return false" ondragstart="return false">`;
+          keyElement.innerHTML = `<span>${keyboardset[i].toUpperCase()}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false" ondragdrop="return false" ondragstart="return false">`;
           i += 1;
         }
         if (shiftMode === true) {
           const keyboardset = ruKeysShift.flat();
-          keyelement.innerHTML = `<span>${keyboardset[i].toUpperCase()}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false" ondragdrop="return false" ondragstart="return false">`;
+          keyElement.innerHTML = `<span>${keyboardset[i].toUpperCase()}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false" ondragdrop="return false" ondragstart="return false">`;
           i += 1;
         }
       }
       if (lang === 'en') {
         if (shiftMode === false) {
           const keyboardset = enKeys.flat();
-          keyelement.innerHTML = `<span>${keyboardset[i].toUpperCase()}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false" ondragdrop="return false" ondragstart="return false">`;
+          keyElement.innerHTML = `<span>${keyboardset[i].toUpperCase()}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false" ondragdrop="return false" ondragstart="return false">`;
           i += 1;
         }
         if (shiftMode === true) {
           const keyboardset = enKeysShift.flat();
-          keyelement.innerHTML = `<span>${keyboardset[i].toUpperCase()}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false" ondragdrop="return false" ondragstart="return false">`;
+          keyElement.innerHTML = `<span>${keyboardset[i].toUpperCase()}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false" ondragdrop="return false" ondragstart="return false">`;
           i += 1;
         }
       }
@@ -143,24 +144,24 @@ function updateKeyboard(lang, shiftMode) {
       if (lang === 'ru') {
         if (shiftMode === false) {
           const keyboardset = ruKeys.flat();
-          keyelement.innerHTML = `<span>${keyboardset[i]}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false" ondragdrop="return false" ondragstart="return false">`;
+          keyElement.innerHTML = `<span>${keyboardset[i]}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false" ondragdrop="return false" ondragstart="return false">`;
           i += 1;
         }
         if (shiftMode === true) {
           const keyboardset = ruKeysShift.flat();
-          keyelement.innerHTML = `<span>${keyboardset[i]}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false" ondragdrop="return false" ondragstart="return false">`;
+          keyElement.innerHTML = `<span>${keyboardset[i]}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false" ondragdrop="return false" ondragstart="return false">`;
           i += 1;
         }
       }
       if (lang === 'en') {
         if (shiftMode === false) {
           const keyboardset = enKeys.flat();
-          keyelement.innerHTML = `<span>${keyboardset[i]}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false" ondragdrop="return false" ondragstart="return false">`;
+          keyElement.innerHTML = `<span>${keyboardset[i]}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false" ondragdrop="return false" ondragstart="return false">`;
           i += 1;
         }
         if (shiftMode === true) {
           const keyboardset = enKeysShift.flat();
-          keyelement.innerHTML = `<span>${keyboardset[i]}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false" ondragdrop="return false" ondragstart="return false">`;
+          keyElement.innerHTML = `<span>${keyboardset[i]}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false" ondragdrop="return false" ondragstart="return false">`;
           i += 1;
         }
       }
