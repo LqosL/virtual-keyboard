@@ -37,6 +37,7 @@
     color: darkorchid;
     text-align: center;
     cursor: url("assets/pointer.png"), pointer;
+    outline: none;
 }
 
 .keyboard-wrapper{

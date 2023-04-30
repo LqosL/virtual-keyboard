@@ -189,6 +189,36 @@ window.addEventListener('load', () => {
   let keyboardElement = createKeyboard(Wrapper.getLang(), shift);
   createFooter();
 
+  document.addEventListener('keydown', (event) => {
+    if (event.key.toLowerCase() === 'shift') {
+      shift = true;
+      if (event.code === 'ShiftLeft') {
+        document.getElementsByClassName('key-Shift')[0].classList.add('pressed');
+      }
+      if (event.code === 'ShiftRight') {
+        document.getElementsByClassName('key-Shift')[1].classList.add('pressed');
+      }
+    }
+    updateKeyboard(Wrapper.getLang(), shift);
+  });
+  document.addEventListener('keyup', (event) => {
+    if (event.key.toLowerCase() === 'shift') {
+      shift = false;
+      if (event.code === 'ShiftLeft') {
+        document.getElementsByClassName('key-Shift')[0].classList.remove('pressed');
+      }
+      if (event.code === 'ShiftRight') {
+        document.getElementsByClassName('key-Shift')[1].classList.remove('pressed');
+      }
+    }
+    updateKeyboard(Wrapper.getLang(), shift);
+  });
+
+  document.getElementsByClassName('textarea')[0].focus();
+  document.getElementsByClassName('textarea')[0].addEventListener('focusout', (event)=> {
+    event.target.focus();
+  });
+
   Array.from(document.getElementsByClassName('key')).forEach((elementKey) => {
     elementKey.addEventListener('mousedown', () => {
       keyDown(elementKey);
@@ -230,20 +260,38 @@ window.addEventListener('load', () => {
           case capsMode === false:
             keyelement.classList.add('pressed');
             capsMode = true;
-            console.log(capsMode);
             updateKeyboard(Wrapper.getLang(), shift);
             break;
           case capsMode === true:
             keyelement.classList.remove('pressed');
             capsMode = false;
-            console.log(capsMode);
             updateKeyboard(Wrapper.getLang(), shift);
             break;
           default:
             break;
         }
       }
-      /* сделать шифту превент дефолт и просто подсвечивать внопку и менять клавиатуру, а когда кнопка отпущена - снимать режим шифт и убирать эктив у кнопки */
+      if (sign.toLowerCase() === 'up') {
+        document.getElementsByClassName('textarea')[0].value += '↑';
+      }
+      if (sign.toLowerCase() === 'down') {
+        document.getElementsByClassName('textarea')[0].value += '↓';
+      }
+      if (sign.toLowerCase() === 'left') {
+        document.getElementsByClassName('textarea')[0].value += '←';
+      }
+      if (sign.toLowerCase() === 'right') {
+        document.getElementsByClassName('textarea')[0].value += '→';
+      }
+      if (sign.toLowerCase() === 'tab') {
+        document.getElementsByClassName('textarea')[0].value += '\t';
+      }
+      if (sign.toLowerCase() === 'enter') {
+        document.getElementsByClassName('textarea')[0].value += '\n';
+      }
+      /* сделать шифту превент дефолт и просто подсвечивать внопку и менять клавиатуру,
+      а когда кнопка отпущена - снимать режим шифт и убирать эктив у кнопки */
     });
   });
+
 });
