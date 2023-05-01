@@ -1,0 +1,193 @@
+.body{
+    background: #E8CBC0;
+    background: -webkit-linear-gradient(to right, #636FA4, #E8CBC0);
+    background:  url("assets/stars.png"), linear-gradient(to right, #636FA4, #E8CBC0);
+    background-blend-mode: soft-light;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-x: hidden;
+}
+.title{
+    text-align: center;
+    font-size: 2em;
+    font-family: 'Press Start 2P', cursive;
+    color: rgba(255, 220, 140, 0.84);
+    -webkit-text-stroke-width: thin;
+    -webkit-text-stroke-color: darkorchid;
+}
+.textarea{
+    width: 1000px;
+    min-height: 200px;
+    background-color: lavender;
+    border-radius: 40px;
+    border: 4px double rgba(255, 220, 140, 0.84);
+    margin: auto;
+    background-image: url("assets/sailor_moon.png");
+    background-position: right;
+    background-repeat: no-repeat;
+    background-origin: border-box;
+    background-size: contain;
+    background-blend-mode: overlay;
+    margin-bottom: 50px;
+    padding: 10px;
+    font-family: monospace;
+    font-weight: 700;
+    font-size: 45px;
+    color: darkorchid;
+    text-align: center;
+    cursor: url("assets/pointer.png"), pointer;
+    outline: none;
+}
+
+.keyboard-wrapper{
+    width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    cursor: url("assets/pointer.png"), pointer;
+}
+.keyboard-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.key{
+    height: 60px;
+    width: 60px;
+    text-align: center;
+    background-image: url("assets/heart.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: relative;
+    user-select: none;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8em;
+    color: blueviolet;
+    transition-duration: 0.1s;
+    cursor: url("assets/pointer.png"), pointer;
+}
+.key:active,
+.pressed:not(.key-Shift),
+.enabled {
+    transform: scale(0.8);
+    transition-duration: 0.1s;
+}
+.key:hover{
+    transform: scale(1.1);
+    transition-duration: 0.1s;
+    -webkit-box-shadow: 4px 4px 41px 23px rgba(255, 235, 176, 0.35);
+    -moz-box-shadow: 4px 4px 41px 23px rgba(255, 235, 176, 0.35);
+    box-shadow: 4px 4px 41px 23px rgba(255, 235, 176, 0.35);
+    border-radius: 50%;
+    font-size: 1em;
+}
+.key:hover:not(.key-Shift, .key-Space, .key-Tab, .key-Alt, .key-Backspace, .key-CapsLock, .key-Ctrl, .key-Del, .key-Down, .key-Enter, .key-Left, .key-Right, .key-Up, .key-Win),
+.key:active:not(.key-Shift, .key-Space, .key-Tab, .key-Alt, .key-Backspace, .key-CapsLock, .key-Ctrl, .key-Del, .key-Down, .key-Enter, .key-Left, .key-Right, .key-Up, .key-Win),
+.pressed:not(.key-Shift, .key-Space, .key-Tab, .key-Alt, .key-Backspace, .key-CapsLock, .key-Ctrl, .key-Del, .key-Down, .key-Enter, .key-Left, .key-Right, .key-Up, .key-Win){
+    background-image: url("assets/active.png");
+}
+
+.twinkle{
+    transition-duration: 0.2s;
+    transform: scale(0);
+    position: absolute;
+    left: -500px;
+    top: -500px;
+    user-select: none;
+}
+.dotwinkle {
+    transform: scale(0.3);
+    transition: 0.5s ease-in-out;
+    user-select: none;
+    z-index: 5;
+}
+
+.footer{
+    text-align: center;
+    font-size: 1em;
+    font-family: 'Press Start 2P', cursive;
+    color: rgba(187, 70, 180, 0.5);
+    order: 6;
+    background: rgba(255,255,255,0.6);
+    border-radius: 40px;
+    max-width: 1600px;
+    align-self: center;
+}
+
+.key-Enter{
+    width: 100px;
+    background-image: url("assets/enter.png");
+    border-radius: 20px;
+    background-size: cover;
+    color: #E8CBC0;
+}
+.key-Space{
+    width: 450px;
+    background-image: url("assets/space.png");
+    background-size: cover;
+    color: transparent;
+    background-position: center;
+    border-radius: 20px;
+}
+
+.key-Shift,
+.key-Backspace{
+    width: 140px;
+    background-image: url("assets/shift.png");
+    background-size: cover;
+    border-radius: 20px;
+}
+.key-Ctrl,
+.key-Win,
+.key-Del,
+.key-Alt,
+.key-Tab{
+    background-image: url("assets/specialbuttons.png");
+    background-size: cover;
+}
+.key-CapsLock{
+    width: 130px;
+    background-image: url("assets/capslock.gif");
+    background-size: cover;
+    border-radius: 20px;
+    color: #E8CBC0;
+}
+.key-Up,
+ .key-Down,
+ .key-Left,
+ .key-Right{
+    width: 70px;
+    height: 70px;
+    background-size: contain;
+    margin: 0;
+    background-position: center;
+    color: transparent;
+ }
+.key-Up{
+    background-image: url("assets/up.png");
+}
+.key-Down{
+    background-image: url("assets/down.png");
+}
+.key-Left{
+    background-image: url("assets/left.png");
+}
+.key-Right{
+    background-image: url("assets/right.png");
+}
+
+.key-Space:hover,
+.key-Shift:hover{
+    transform: scale(1, 1.1);
+    transition-duration: 0.1s;
+}
+
+.key span {
+    position: relative;
+    top: 40%;
+}
+
+
+
