@@ -254,19 +254,23 @@ window.addEventListener('load', () => {
     }
   });
   document.addEventListener('mousedown', (event) => {
-    const shiftElement = findWithClassInParents(event.target, 'key-Shift');
-    if (shiftElement != null) {
-      shift = true;
-      shiftElement.classList.add('enabled');
-      shiftElement.classList.add('moused');
-      updateKeyboard(Wrapper.getLang(), shift);
+    const keyElement = findWithClassInParents(event.target, 'key');
+    if (keyElement != null) {
+      keyElement.classList.add('moused');
+      if (keyElement.classList.contains('key-Shift')) {
+        shift = true;
+        keyElement.classList.add('enabled');
+        updateKeyboard(Wrapper.getLang(), shift);
+      }
     }
   });
   document.addEventListener('mouseup', (event) => {
-    const shiftElement = findWithClassInParents(event.target, 'key-Shift');
-    if (shiftElement != null) {
-      shiftElement.classList.remove('moused');
-      shiftOff();
+    const keyElement = findWithClassInParents(event.target, 'key');
+    if (keyElement != null) {
+      keyElement.classList.remove('moused');
+      if (keyElement.classList.contains('key-Shift')) {
+        shiftOff();
+      }
     }
   });
 
@@ -378,6 +382,9 @@ window.addEventListener('load', () => {
     keyelement.addEventListener('click', (event) => {
       const targetElement = findWithClassInParents(event.target, 'key');
       const sign = targetElement.getElementsByTagName('span')[0].innerText;
+      if (targetElement.classList.contains('moused')) {
+        return;
+      }
       if (sign.length === 1 && capsMode === false) {
         editTextarea(sign);
       } else if (sign.length === 1 && capsMode === true && shift === false) {
@@ -392,11 +399,13 @@ window.addEventListener('load', () => {
         switch (true) {
           case capsMode === false:
             targetElement.classList.add('enabled');
+            targetElement.classList.add('pressed');
             capsMode = true;
             updateKeyboard(Wrapper.getLang(), shift);
             break;
           case capsMode === true:
             targetElement.classList.remove('enabled');
+            targetElement.classList.remove('pressed');
             capsMode = false;
             updateKeyboard(Wrapper.getLang(), shift);
             break;
