@@ -1,7 +1,7 @@
 .body{
-    background: #E8CBC0;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #636FA4, #E8CBC0);  /* Chrome 10-25, Safari 5.1-6 */
-    background:  url("assets/stars.png"), linear-gradient(to right, #636FA4, #E8CBC0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #E8CBC0;
+    background: -webkit-linear-gradient(to right, #636FA4, #E8CBC0);
+    background:  url("assets/stars.png"), linear-gradient(to right, #636FA4, #E8CBC0);
     background-blend-mode: soft-light;
     display: flex;
     flex-direction: column;
@@ -45,7 +45,7 @@
     display: flex;
     flex-direction: column;
     align-self: center;
-    cursor: url("assets/pointer.png") 2 0, pointer;
+    cursor: url("assets/pointer.png"), pointer;
 }
 .keyboard-row{
     display: flex;
@@ -57,9 +57,9 @@
     height: 60px;
     width: 60px;
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*justify-content: center;*/
     background-image: url("assets/heart.png");
     background-repeat: no-repeat;
     background-size: contain;
@@ -72,7 +72,7 @@
     cursor: url("assets/pointer.png"), pointer;
 }
 .key:active,
-.pressed,
+.pressed:not(.key-Shift),
 .enabled {
     transform: scale(0.8);
     transition-duration: 0.1s;
@@ -93,25 +93,30 @@
 }
 
 .twinkle{
-    transition-duration: 0s;
+    transition-duration: 0.2s;
     transform: scale(0);
     position: absolute;
     left: -500px;
     top: -500px;
     user-select: none;
 }
-.dotwinkle{
+.dotwinkle {
     transform: scale(0.3);
-    transition: 0.1s ease-in-out;
+    transition: 0.5s ease-in-out;
     user-select: none;
     z-index: 5;
 }
+
 .footer{
     text-align: center;
     font-size: 1em;
     font-family: 'Press Start 2P', cursive;
-    color: rgba(255, 220, 140, 0.84);
+    color: rgba(187, 70, 180, 0.5);
     order: 6;
+    background: rgba(255,255,255,0.6);
+    border-radius: 40px;
+    max-width: 1600px;
+    align-self: center;
 }
 
 .key-Enter{
@@ -180,7 +185,12 @@
 .key-Shift:hover{
     transform: scale(1, 1.1);
     transition-duration: 0.1s;
-
 }
+
+.key span {
+    position: relative;
+    top: 40%;
+}
+
 
 

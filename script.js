@@ -34,6 +34,19 @@ class Wrapper {
   }
 }
 
+function findWithClassInParents(element, className) {
+  switch (true) {
+    case element == null:
+      return null;
+    case element.classList.contains(className):
+      return element;
+    case element.parentElement == null:
+      return null;
+    default:
+      return findWithClassInParents(element.parentElement, className);
+  }
+}
+
 function createHeader() {
   const header = document.createElement('header');
   header.classList.add('header');
@@ -59,9 +72,9 @@ function createButton(role) {
   button.classList.add('key');
   button.classList.add(`key-${role}`);
   if (capsMode === true) {
-    button.innerHTML = `<span>${role.toUpperCase()}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false" ondragdrop="return false" ondragstart="return false">`;
+    button.innerHTML = `<span>${role.toUpperCase()}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false"  ondragstart="return false">`;
   }
-  button.innerHTML = `<span>${role}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false" ondragdrop="return false" ondragstart="return false">`;
+  button.innerHTML = `<span>${role}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false"  ondragstart="return false">`;
   return button;
 }
 function createRow(arr) {
@@ -111,57 +124,53 @@ function createKeyboard(lang, shiftMode) {
   }
   return keyboardWrapper;
 }
-function updateKeyboard(lang, shiftMode) {
+function updateKeyboard(lang) {
   let i = 0;
   Array.from(document.getElementsByClassName('key')).forEach((keyelement) => {
     const keyElement = keyelement;
     if (capsMode === true) {
       if (lang === 'ru') {
-        if (shiftMode === false) {
+        if (shift === false) {
           const keyboardset = ruKeys.flat();
-          keyElement.innerHTML = `<span>${keyboardset[i].toUpperCase()}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false" ondragdrop="return false" ondragstart="return false">`;
+          keyElement.innerHTML = `<span>${keyboardset[i].toUpperCase()}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false" ondragstart="return false">`;
           i += 1;
-        }
-        if (shiftMode === true) {
+        } else {
           const keyboardset = ruKeysShift.flat();
-          keyElement.innerHTML = `<span>${keyboardset[i].toUpperCase()}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false" ondragdrop="return false" ondragstart="return false">`;
+          keyElement.innerHTML = `<span>${keyboardset[i].toLowerCase()}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false" ondragstart="return false">`;
           i += 1;
         }
       }
       if (lang === 'en') {
-        if (shiftMode === false) {
+        if (shift === false) {
           const keyboardset = enKeys.flat();
-          keyElement.innerHTML = `<span>${keyboardset[i].toUpperCase()}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false" ondragdrop="return false" ondragstart="return false">`;
+          keyElement.innerHTML = `<span>${keyboardset[i].toUpperCase()}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false"  ondragstart="return false">`;
           i += 1;
-        }
-        if (shiftMode === true) {
+        } else {
           const keyboardset = enKeysShift.flat();
-          keyElement.innerHTML = `<span>${keyboardset[i].toUpperCase()}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false" ondragdrop="return false" ondragstart="return false">`;
+          keyElement.innerHTML = `<span>${keyboardset[i].toLowerCase()}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false"  ondragstart="return false">`;
           i += 1;
         }
       }
     } else if (capsMode === false) {
       if (lang === 'ru') {
-        if (shiftMode === false) {
+        if (shift === false) {
           const keyboardset = ruKeys.flat();
-          keyElement.innerHTML = `<span>${keyboardset[i]}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false" ondragdrop="return false" ondragstart="return false">`;
+          keyElement.innerHTML = `<span>${keyboardset[i]}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false"  ondragstart="return false">`;
           i += 1;
-        }
-        if (shiftMode === true) {
+        } else {
           const keyboardset = ruKeysShift.flat();
-          keyElement.innerHTML = `<span>${keyboardset[i]}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false" ondragdrop="return false" ondragstart="return false">`;
+          keyElement.innerHTML = `<span>${keyboardset[i]}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false"  ondragstart="return false">`;
           i += 1;
         }
       }
       if (lang === 'en') {
-        if (shiftMode === false) {
+        if (shift === false) {
           const keyboardset = enKeys.flat();
-          keyElement.innerHTML = `<span>${keyboardset[i]}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false" ondragdrop="return false" ondragstart="return false">`;
+          keyElement.innerHTML = `<span>${keyboardset[i]}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false"  ondragstart="return false">`;
           i += 1;
-        }
-        if (shiftMode === true) {
+        } else {
           const keyboardset = enKeysShift.flat();
-          keyElement.innerHTML = `<span>${keyboardset[i]}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false" ondragdrop="return false" ondragstart="return false">`;
+          keyElement.innerHTML = `<span>${keyboardset[i]}</span> <img src = "assets/key_stars.png" alt = "" class = "twinkle" ondrag="return false"  ondragstart="return false">`;
           i += 1;
         }
       }
@@ -194,14 +203,19 @@ function editTextarea(sign) {
   const indexStart = document.getElementsByClassName('textarea')[0].selectionStart;
   const indexEnd = document.getElementsByClassName('textarea')[0].selectionEnd;
   if (indexStart === indexEnd) {
-    const a = text.slice(0, indexStart) + sign + text.slice(indexStart);
-    document.getElementsByClassName('textarea')[0].value = a;
+    document.getElementsByClassName('textarea')[0].value = text.slice(0, indexStart) + sign + text.slice(indexStart);
     document.getElementsByClassName('textarea')[0].selectionEnd = indexStart + 1;
   } else {
-    const a = text.slice(0, indexStart) + sign + text.slice(indexEnd);
-    document.getElementsByClassName('textarea')[0].value = a;
+    document.getElementsByClassName('textarea')[0].value = text.slice(0, indexStart) + sign + text.slice(indexEnd);
     document.getElementsByClassName('textarea')[0].selectionEnd = indexStart + 1;
   }
+}
+function shiftOff() {
+  shift = false;
+  Array.from(document.getElementsByClassName('key-Shift')).forEach((element) => {
+    element.classList.remove('enabled');
+  });
+  updateKeyboard(Wrapper.getLang(), shift);
 }
 
 window.addEventListener('load', () => {
@@ -211,28 +225,49 @@ window.addEventListener('load', () => {
   createFooter();
 
   document.addEventListener('keydown', (event) => {
-    if (event.key.toLowerCase() === 'shift') {
+    if (event.key.toLowerCase() === 'shift' && !shift) {
       shift = true;
       if (event.code === 'ShiftLeft') {
-        document.getElementsByClassName('key-Shift')[0].classList.add('pressed');
+        document.getElementsByClassName('key-Shift')[0].classList.add('enabled');
       }
       if (event.code === 'ShiftRight') {
-        document.getElementsByClassName('key-Shift')[1].classList.add('pressed');
+        document.getElementsByClassName('key-Shift')[1].classList.add('enabled');
       }
+      updateKeyboard(Wrapper.getLang(), shift);
     }
-    updateKeyboard(Wrapper.getLang(), shift);
   });
   document.addEventListener('keyup', (event) => {
     if (event.key.toLowerCase() === 'shift') {
-      shift = false;
-      if (event.code === 'ShiftLeft') {
-        document.getElementsByClassName('key-Shift')[0].classList.remove('pressed');
-      }
+      let pressedShift = document.getElementsByClassName('key-Shift').item(0);
+      let oppositeShift = document.getElementsByClassName('key-Shift').item(1);
       if (event.code === 'ShiftRight') {
-        document.getElementsByClassName('key-Shift')[1].classList.remove('pressed');
+        pressedShift = document.getElementsByClassName('key-Shift').item(1);
+        oppositeShift = document.getElementsByClassName('key-Shift').item(0);
+      }
+      if (findWithClassInParents(pressedShift, 'moused') != null) {
+        event.stopImmediatePropagation();
+        return;
+      }
+      if (!oppositeShift.classList.contains('enabled') || !event.shiftKey) {
+        shiftOff();
       }
     }
-    updateKeyboard(Wrapper.getLang(), shift);
+  });
+  document.addEventListener('mousedown', (event) => {
+    const shiftElement = findWithClassInParents(event.target, 'key-Shift');
+    if (shiftElement != null) {
+      shift = true;
+      shiftElement.classList.add('enabled');
+      shiftElement.classList.add('moused');
+      updateKeyboard(Wrapper.getLang(), shift);
+    }
+  });
+  document.addEventListener('mouseup', (event) => {
+    const shiftElement = findWithClassInParents(event.target, 'key-Shift');
+    if (shiftElement != null) {
+      shiftElement.classList.remove('moused');
+      shiftOff();
+    }
   });
 
   document.getElementsByClassName('textarea')[0].focus();
@@ -241,17 +276,19 @@ window.addEventListener('load', () => {
   });
 
   Array.from(document.getElementsByClassName('key')).forEach((elementKey) => {
-    elementKey.addEventListener('mousedown', () => {
-      keyDown(elementKey);
-    });
-    const mouseUpListener = () => {
-      keyUp(elementKey);
-    };
-    elementKey.addEventListener('mouseup', mouseUpListener);
-    elementKey.addEventListener('mouseleave', mouseUpListener);
+    const isShift = elementKey.classList.contains('key-Shift');
+    if (!isShift) {
+      elementKey.addEventListener('mousedown', () => {
+        keyDown(elementKey);
+      });
+      const mouseUpListener = () => {
+        keyUp(elementKey);
+      };
+      elementKey.addEventListener('mouseup', mouseUpListener);
+      elementKey.addEventListener('mouseleave', mouseUpListener);
+    }
   });
 
-  /* смена языка */
   Array.from(document.getElementsByClassName('key-Ctrl')).forEach((keyelement) => {
     if (Array.from(document.getElementsByClassName('key-Ctrl')).indexOf(keyelement) === 0) {
       keyelement.addEventListener('mousedown', () => {
@@ -337,14 +374,16 @@ window.addEventListener('load', () => {
     }
   });
 
-  /* клик по виртуальным кпопкам */
   Array.from(document.getElementsByClassName('key')).forEach((keyelement) => {
-    keyelement.addEventListener('click', () => {
-      const sign = keyelement.getElementsByTagName('span')[0].innerText;
+    keyelement.addEventListener('click', (event) => {
+      const targetElement = findWithClassInParents(event.target, 'key');
+      const sign = targetElement.getElementsByTagName('span')[0].innerText;
       if (sign.length === 1 && capsMode === false) {
         editTextarea(sign);
-      } else if (sign.length === 1 && capsMode === true) {
+      } else if (sign.length === 1 && capsMode === true && shift === false) {
         editTextarea(sign.toUpperCase());
+      } else if (sign.length === 1 && capsMode === true && shift === true) {
+        editTextarea(sign);
       }
       if (sign.toLowerCase() === 'space') {
         editTextarea(' ');
@@ -352,12 +391,12 @@ window.addEventListener('load', () => {
       if (sign.toLowerCase() === 'capslock') {
         switch (true) {
           case capsMode === false:
-            keyelement.classList.add('enabled');
+            targetElement.classList.add('enabled');
             capsMode = true;
             updateKeyboard(Wrapper.getLang(), shift);
             break;
           case capsMode === true:
-            keyelement.classList.remove('enabled');
+            targetElement.classList.remove('enabled');
             capsMode = false;
             updateKeyboard(Wrapper.getLang(), shift);
             break;
@@ -388,12 +427,10 @@ window.addEventListener('load', () => {
         const indexStart = document.getElementsByClassName('textarea')[0].selectionStart;
         const indexEnd = document.getElementsByClassName('textarea')[0].selectionEnd;
         if (indexStart === indexEnd) {
-          const a = text.slice(0, indexStart) + text.slice(indexStart + 1);
-          document.getElementsByClassName('textarea')[0].value = a;
+          document.getElementsByClassName('textarea')[0].value = text.slice(0, indexStart) + text.slice(indexStart + 1);
           document.getElementsByClassName('textarea')[0].selectionEnd = indexStart;
         } else {
-          const a = text.slice(0, indexStart) + text.slice(indexEnd);
-          document.getElementsByClassName('textarea')[0].value = a;
+          document.getElementsByClassName('textarea')[0].value = text.slice(0, indexStart) + text.slice(indexEnd);
           document.getElementsByClassName('textarea')[0].selectionEnd = indexStart;
         }
       }
@@ -402,38 +439,45 @@ window.addEventListener('load', () => {
         const indexStart = document.getElementsByClassName('textarea')[0].selectionStart;
         const indexEnd = document.getElementsByClassName('textarea')[0].selectionEnd;
         if (indexStart === indexEnd) {
-          const a = text.slice(0, indexStart - 1) + text.slice(indexStart);
-          document.getElementsByClassName('textarea')[0].value = a;
+          document.getElementsByClassName('textarea')[0].value = text.slice(0, indexStart - 1) + text.slice(indexStart);
           document.getElementsByClassName('textarea')[0].selectionEnd = indexStart - 1;
         } else {
-          const a = text.slice(0, indexStart) + text.slice(indexEnd);
-          document.getElementsByClassName('textarea')[0].value = a;
+          document.getElementsByClassName('textarea')[0].value = text.slice(0, indexStart) + text.slice(indexEnd);
           document.getElementsByClassName('textarea')[0].selectionEnd = indexStart;
         }
       }
     });
   });
 
-  /* нажатия на клавиатуре */
   document.addEventListener('keydown', (event) => {
     event.preventDefault();
     const keyboardset = Array.from(document.getElementsByClassName('key'));
     const index = keyCodes.indexOf(event.code);
-    keyboardset[index].classList.add('pressed');
-    keyboardset[index].getElementsByClassName('twinkle')[0].classList.add('dotwinkle');
-    keyboardset[index].click();
-    if (ctrlMode === true) {
-      ctrlMode = false;
-    }
-    if (altMode === true) {
-      altMode = false;
+    const element = keyboardset[index];
+    if (element != null) {
+      element.classList.add('pressed');
+      element.getElementsByClassName('twinkle')[0].classList.add('dotwinkle');
+      element.click();
+      if (ctrlMode === true) {
+        ctrlMode = false;
+      }
+      if (altMode === true) {
+        altMode = false;
+      }
     }
   });
   document.addEventListener('keyup', (event) => {
     event.preventDefault();
     const keyboardset = Array.from(document.getElementsByClassName('key'));
     const index = keyCodes.indexOf(event.code);
-    keyboardset[index].classList.remove('pressed');
-    keyboardset[index].getElementsByClassName('twinkle')[0].classList.remove('dotwinkle');
+    const element = keyboardset[index];
+    if (findWithClassInParents(element, 'moused') != null) {
+      event.stopImmediatePropagation();
+      return;
+    }
+    if (element != null) {
+      element.classList.remove('pressed');
+      element.getElementsByClassName('twinkle')[0].classList.remove('dotwinkle');
+    }
   });
 });
