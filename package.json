@@ -17,8 +17,8 @@
   },
   "homepage": "https://github.com/LqosL/virtual-keyboard#readme",
   "devDependencies": {
-    "eslint": "8.22.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.27.5"
+    "eslint": "latest",
+    "eslint-config-airbnb-base": "latest",
+    "eslint-plugin-import": "latest"
   }
 }
